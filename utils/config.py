@@ -16,6 +16,8 @@ top_db = None
 
 labels = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 
     'pop', 'reggae', 'rock']
+
+labels = ['cat','dog']
     
 lb_to_idx = {lb: idx for idx, lb in enumerate(labels)}
 idx_to_lb = {idx: lb for idx, lb in enumerate(labels)}
