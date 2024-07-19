@@ -14,8 +14,7 @@ ref = 1.0
 amin = 1e-10
 top_db = None
 
-labels = ['blues', 'classical', 'country', 'disco', 'hiphop', 'jazz', 'metal', 
-    'pop', 'reggae', 'rock']
+# labels = ['mad thabii', 'mad lazim mutsaqal kilmi', 'mad arid lissukun']
 
 labels = ['cat','dog']
     
