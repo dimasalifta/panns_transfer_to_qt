@@ -39,7 +39,7 @@ def train(args):
     stop_iteration = args.stop_iteration
     device = 'cuda' if (args.cuda and torch.cuda.is_available()) else 'cpu'
     filename = args.filename
-    num_workers = 2
+    num_workers = args.workers
 
     loss_func = get_loss_func(loss_type)
     pretrain = True if pretrained_checkpoint_path else False
@@ -238,6 +238,7 @@ if __name__ == '__main__':
     parser_train.add_argument('--resume_iteration', type=int)
     parser_train.add_argument('--stop_iteration', type=int, required=True)
     parser_train.add_argument('--cuda', action='store_true', default=False)
+    parser_train.add_argument('--workers', type=int, required=True)
 
     # Parse arguments
     args = parser.parse_args()
