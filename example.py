@@ -51,8 +51,8 @@ def plot_sound_event_detection_result(framewise_output):
 if __name__ == '__main__':
     """Example of using panns_inferece for audio tagging and sound evetn detection.
     """
-    device = 'cpu' # 'cuda' | 'cpu'
-    audio_path = 'resources/R9_ZSCveAHg_7s.wav'
+    device = 'cuda' # 'cuda' | 'cpu'
+    audio_path = 'datasets/R9_ZSCveAHg_7s.wav'
     (audio, _) = librosa.core.load(audio_path, sr=32000, mono=True)
     audio = audio[None, :]  # (batch_size, segment_samples)
 

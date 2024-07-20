@@ -7,7 +7,7 @@ import torch
 from pathlib import Path
 
 from .pytorch_utils import move_data_to_device
-from .models import Cnn14, Cnn14_DecisionLevelMax
+from .models import Cnn14, Cnn14_DecisionLevelMax, Transfer_Cnn14
 from .config import labels, classes_num
 
 
@@ -46,9 +46,13 @@ class AudioTagging(object):
 
         # Model
         if model is None:
-            self.model = Cnn14(sample_rate=32000, window_size=1024, 
+            # self.model = Cnn14(sample_rate=32000, window_size=1024, 
+            #     hop_size=320, mel_bins=64, fmin=50, fmax=14000, 
+            #     classes_num=self.classes_num)
+            
+            self.model = Transfer_Cnn14(sample_rate=32000, window_size=1024, 
                 hop_size=320, mel_bins=64, fmin=50, fmax=14000, 
-                classes_num=self.classes_num)
+                classes_num=self.classes_num, freeze_base=False)
         else:
             self.model = model
 
