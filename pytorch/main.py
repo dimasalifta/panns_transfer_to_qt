@@ -46,23 +46,26 @@ def train(args):
     
     hdf5_path = os.path.join(workspace, 'features', 'waveform.h5')
 
-    checkpoints_dir = os.path.join(workspace, 'checkpoints', filename, 
-        'holdout_fold={}'.format(holdout_fold), model_type, 'pretrain={}'.format(pretrain), 
-        'loss_type={}'.format(loss_type), 'augmentation={}'.format(augmentation),
-         'batch_size={}'.format(batch_size), 'freeze_base={}'.format(freeze_base))
+    # checkpoints_dir = os.path.join(workspace, 'checkpoints', filename, 
+    #     'holdout_fold={}'.format(holdout_fold), model_type, 'pretrain={}'.format(pretrain), 
+    #     'loss_type={}'.format(loss_type), 'augmentation={}'.format(augmentation),
+    #      'batch_size={}'.format(batch_size), 'freeze_base={}'.format(freeze_base))
+    checkpoints_dir = os.path.join(workspace, 'checkpoints', filename)
     create_folder(checkpoints_dir)
 
-    statistics_path = os.path.join(workspace, 'statistics', filename, 
-        'holdout_fold={}'.format(holdout_fold), model_type, 'pretrain={}'.format(pretrain), 
-        'loss_type={}'.format(loss_type), 'augmentation={}'.format(augmentation), 
-        'batch_size={}'.format(batch_size), 'freeze_base={}'.format(freeze_base), 
-        'statistics.pickle')
+    # statistics_path = os.path.join(workspace, 'statistics', filename, 
+    #     'holdout_fold={}'.format(holdout_fold), model_type, 'pretrain={}'.format(pretrain), 
+    #     'loss_type={}'.format(loss_type), 'augmentation={}'.format(augmentation), 
+    #     'batch_size={}'.format(batch_size), 'freeze_base={}'.format(freeze_base), 
+    #     'statistics.pickle')
+    statistics_path = os.path.join(workspace, 'statistics', filename)
     create_folder(os.path.dirname(statistics_path))
     
-    logs_dir = os.path.join(workspace, 'logs', filename, 
-        'holdout_fold={}'.format(holdout_fold), model_type, 'pretrain={}'.format(pretrain), 
-        'loss_type={}'.format(loss_type), 'augmentation={}'.format(augmentation), 
-        'batch_size={}'.format(batch_size), 'freeze_base={}'.format(freeze_base))
+    # logs_dir = os.path.join(workspace, 'logs', filename, 
+    #     'holdout_fold={}'.format(holdout_fold), model_type, 'pretrain={}'.format(pretrain), 
+    #     'loss_type={}'.format(loss_type), 'augmentation={}'.format(augmentation), 
+    #     'batch_size={}'.format(batch_size), 'freeze_base={}'.format(freeze_base))
+    logs_dir = os.path.join(workspace, 'logs', filename)
     create_logging(logs_dir, 'w')
     logging.info(args)
 
