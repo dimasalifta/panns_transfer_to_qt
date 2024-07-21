@@ -5,7 +5,7 @@ import librosa
 import panns_inference
 from panns_inference import AudioTagging, SoundEventDetection, labels
 
-ckpt_path = "/content/panns_transfer_to_qt/checkpoints/main/2000_iterations.pth"
+ckpt_path = "/content/gdrive/MyDrive/2000_iter.pth"
 def print_audio_tagging_result(clipwise_output):
     """Visualization of audio tagging result.
 
