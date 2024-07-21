@@ -15,7 +15,7 @@ def print_audio_tagging_result(clipwise_output):
     sorted_indexes = np.argsort(clipwise_output)[::-1]
 
     # Print audio tagging top probabilities
-    for k in range(10):
+    for k in range(len(clipwise_output)):
         print('{}: {:.3f}'.format(np.array(labels)[sorted_indexes[k]], 
             clipwise_output[sorted_indexes[k]]))
 
