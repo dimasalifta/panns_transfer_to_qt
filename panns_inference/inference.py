@@ -27,14 +27,14 @@ class AudioTagging(object):
     def __init__(self, model=None, checkpoint_path=None, device='cuda'):
         """Audio tagging inference wrapper.
         """
-        if not checkpoint_path:
-            checkpoint_path='{}/panns_data/Cnn14_mAP=0.431.pth'.format(str(Path.home()))
-        print('Checkpoint path: {}'.format(checkpoint_path))
+        # if not checkpoint_path:
+        #     checkpoint_path='{}/panns_data/Cnn14_mAP=0.431.pth'.format(str(Path.home()))
+        # print('Checkpoint path: {}'.format(checkpoint_path))
         
-        if not os.path.exists(checkpoint_path) or os.path.getsize(checkpoint_path) < 3e8:
-            create_folder(os.path.dirname(checkpoint_path))
-            zenodo_path = 'https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.431.pth?download=1'
-            os.system('wget -O "{}" "{}"'.format(checkpoint_path, zenodo_path))
+        # if not os.path.exists(checkpoint_path) or os.path.getsize(checkpoint_path) < 3e8:
+        #     create_folder(os.path.dirname(checkpoint_path))
+        #     zenodo_path = 'https://zenodo.org/record/3987831/files/Cnn14_mAP%3D0.431.pth?download=1'
+        #     os.system('wget -O "{}" "{}"'.format(checkpoint_path, zenodo_path))
 
         if device == 'cuda' and torch.cuda.is_available():
             self.device = 'cuda'
@@ -90,13 +90,13 @@ class SoundEventDetection(object):
             device: str, 'cpu' | 'cuda'
             interpolate_mode, 'nearest' |'linear'
         """
-        if not checkpoint_path:
-            checkpoint_path='{}/panns_data/Cnn14_DecisionLevelMax.pth'.format(str(Path.home()))
-        print('Checkpoint path: {}'.format(checkpoint_path))
+        # if not checkpoint_path:
+        #     checkpoint_path='{}/panns_data/Cnn14_DecisionLevelMax.pth'.format(str(Path.home()))
+        # print('Checkpoint path: {}'.format(checkpoint_path))
 
-        if not os.path.exists(checkpoint_path) or os.path.getsize(checkpoint_path) < 3e8:
-            create_folder(os.path.dirname(checkpoint_path))
-            os.system('wget -O "{}" https://zenodo.org/record/3987831/files/Cnn14_DecisionLevelMax_mAP%3D0.385.pth?download=1'.format(checkpoint_path))
+        # if not os.path.exists(checkpoint_path) or os.path.getsize(checkpoint_path) < 3e8:
+        #     create_folder(os.path.dirname(checkpoint_path))
+        #     os.system('wget -O "{}" https://zenodo.org/record/3987831/files/Cnn14_DecisionLevelMax_mAP%3D0.385.pth?download=1'.format(checkpoint_path))
 
         if device == 'cuda' and torch.cuda.is_available():
             self.device = 'cuda'
