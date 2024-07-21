@@ -44,6 +44,8 @@ class AudioTagging(object):
         self.labels = labels
         self.classes_num = classes_num
 
+        print(labels)
+        print(classes_num)
         # Model
         if model is None:
             # self.model = Cnn14(sample_rate=32000, window_size=1024, 
