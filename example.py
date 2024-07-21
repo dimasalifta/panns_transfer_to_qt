@@ -57,7 +57,7 @@ if __name__ == '__main__':
     audio = audio[None, :]  # (batch_size, segment_samples)
 
     print('------ Audio tagging ------')
-    at = AudioTagging(checkpoint_path=None, device=device)
+    at = AudioTagging(checkpoint_path=ckpt_path, device=device)
     (clipwise_output, embedding) = at.inference(audio)
     """clipwise_output: (batch_size, classes_num), embedding: (batch_size, embedding_size)"""
 
