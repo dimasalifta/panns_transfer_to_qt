@@ -52,7 +52,7 @@ class AudioTagging(object):
             
             self.model = Transfer_Cnn14(sample_rate=32000, window_size=1024, 
                 hop_size=320, mel_bins=64, fmin=50, fmax=14000, 
-                classes_num=2, freeze_base=False)
+                classes_num=self.classes_num, freeze_base=False)
         else:
             self.model = model
 

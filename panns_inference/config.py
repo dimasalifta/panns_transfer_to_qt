@@ -25,6 +25,8 @@ for i1 in range(1, len(lines)):
     ids.append(id)
     labels.append(label)
 
+print(labels)
+
 classes_num = len(labels)
 
 lb_to_ix = {label : i for i, label in enumerate(labels)}
