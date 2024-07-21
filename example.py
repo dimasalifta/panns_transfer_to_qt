@@ -5,7 +5,7 @@ import librosa
 import panns_inference
 from panns_inference import AudioTagging, SoundEventDetection, labels
 
-ckpt_path = "/content/panns_transfer_to_qt/checkpoints/main/holdout_fold=1/Cnn14/pretrain=True/loss_type=clip_nll/augmentation=mixup/batch_size=2/freeze_base=False/"
+ckpt_path = "/content/panns_transfer_to_qt/checkpoints/main/holdout_fold=1/Transfer_Cnn14/pretrain=True/loss_type=clip_nll/augmentation=mixup/batch_size=2/freeze_base=False/2000_iterations.pth"
 def print_audio_tagging_result(clipwise_output):
     """Visualization of audio tagging result.
 
