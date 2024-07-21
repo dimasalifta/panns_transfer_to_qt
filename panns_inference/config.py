@@ -25,7 +25,7 @@ sample_rate = 32000
 #     ids.append(id)
 #     labels.append(label)
 
-labels = ['cat','dog']
+labels = 2
 classes_num = len(labels)
 
 lb_to_ix = {label : i for i, label in enumerate(labels)}
