@@ -5,26 +5,27 @@ from pathlib import Path
 
 sample_rate = 32000
 
-labels_csv_path = '{}/panns_data/class_labels_indices.csv'.format(str(Path.home()))
+# labels_csv_path = '{}/panns_data/class_labels_indices.csv'.format(str(Path.home()))
 
-# Download labels if not exist
-if not os.path.isfile(labels_csv_path):
-	os.makedirs(os.path.dirname(labels_csv_path), exist_ok=True)
-	os.system('wget -O "{}" "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/class_labels_indices.csv"'.format(labels_csv_path))
+# # Download labels if not exist
+# if not os.path.isfile(labels_csv_path):
+# 	os.makedirs(os.path.dirname(labels_csv_path), exist_ok=True)
+# 	os.system('wget -O "{}" "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/class_labels_indices.csv"'.format(labels_csv_path))
 
-# Load label
-with open(labels_csv_path, 'r') as f:
-    reader = csv.reader(f, delimiter=',')
-    lines = list(reader)
+# # Load label
+# with open(labels_csv_path, 'r') as f:
+#     reader = csv.reader(f, delimiter=',')
+#     lines = list(reader)
 
 labels = []
 ids = []    # Each label has a unique id such as "/m/068hy"
-for i1 in range(1, len(lines)):
-    id = lines[i1][1]
-    label = lines[i1][2]
-    ids.append(id)
-    labels.append(label)
+# for i1 in range(1, len(lines)):
+#     id = lines[i1][1]
+#     label = lines[i1][2]
+#     ids.append(id)
+#     labels.append(label)
 
+labels = ["cat","dog"]
 print(labels)
 
 classes_num = len(labels)
