@@ -304,9 +304,8 @@ class Cnn14_DecisionLevelMax(nn.Module):
     
 class Transfer_Cnn14_detect(nn.Module):
     def __init__(self, sample_rate, window_size, hop_size, mel_bins, fmin, 
-        fmax, classes_num, freeze_base ,interpolate_mode='nearest'):
-        """Classifier for a new task using pretrained Cnn14 as a sub module.
-        """
+        fmax, classes_num, freeze_base, interpolate_mode='nearest'):
+        """Classifier for a new task using pretrained Cnn14 as a sub module."""
         super(Transfer_Cnn14_detect, self).__init__()
         audioset_classes_num = 527
         
@@ -321,10 +320,6 @@ class Transfer_Cnn14_detect(nn.Module):
             for param in self.base.parameters():
                 param.requires_grad = False
 
-        self.interpolator = Interpolator(
-            ratio=self.interpolate_ratio, 
-            interpolate_mode=interpolate_mode
-        )
         self.init_weights()
 
     def init_weights(self):
@@ -335,12 +330,17 @@ class Transfer_Cnn14_detect(nn.Module):
         self.base.load_state_dict(checkpoint['model'])
 
     def forward(self, input, mixup_lambda=None):
-        """Input: (batch_size, data_length)
-        """
+        """Input: (batch_size, data_length)"""
         output_dict = self.base(input, mixup_lambda)
         framewise_output = output_dict['framewise_output']
 
-        clipwise_output =  torch.log_softmax(self.fc_transfer(framewise_output), dim=-1)
+        # Apply fc_transfer to framewise_output to get output for classes
+        framewise_output = self.fc_transfer(framewise_output)  # (batch_size, time_steps, classes_num)
+
+        # For clipwise output, we can average or max over the time steps
+        clipwise_output = torch.log_softmax(torch.max(framewise_output, dim=1)[0], dim=-1)
+        
+        output_dict['framewise_output'] = framewise_output
         output_dict['clipwise_output'] = clipwise_output
         
         return output_dict

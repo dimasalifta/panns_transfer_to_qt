@@ -1,0 +1,15 @@
+python pytorch/main.py train ^
+--dataset_dir=C:\Users\dimas\Documents\GitHub\panns_transfer_to_qt\datasets ^
+--workspace=C:\Users\dimas\Documents\GitHub\panns_transfer_to_qt ^
+--holdout_fold=1 ^
+--model_type="Transfer_Cnn14" ^
+--pretrained_checkpoint_path=C:\Users\dimas\Documents\GitHub\panns_transfer_to_qt\pretrained_models\Cnn14_mAP=0.431.pth ^
+--freeze_base ^
+--loss_type=clip_nll ^
+--augmentation="mixup" ^
+--learning_rate=1e-4 ^
+--batch_size=2 ^
+--resume_iteration=0 ^
+--stop_iteration=10000 ^
+--cuda ^
+--worker=2

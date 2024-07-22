@@ -182,6 +182,8 @@ class Transfer_Cnn14(nn.Module):
         self.base = Cnn14(sample_rate, window_size, hop_size, mel_bins, fmin, 
             fmax, audioset_classes_num)
 
+
+        # print(classes_num)
         # Transfer to another task layer
         self.fc_transfer = nn.Linear(2048, classes_num, bias=True)
 
@@ -202,6 +204,7 @@ class Transfer_Cnn14(nn.Module):
     def forward(self, input, mixup_lambda=None):
         """Input: (batch_size, data_length)
         """
+        # print(len(input))
         output_dict = self.base(input, mixup_lambda)
         embedding = output_dict['embedding']
 
@@ -318,7 +321,7 @@ class Cnn14_DecisionLevelMax(nn.Module):
     
 class Transfer_Cnn14_detect(nn.Module):
     def __init__(self, sample_rate, window_size, hop_size, mel_bins, fmin, 
-        fmax, classes_num, freeze_base, interpolate_mode='nearest'):
+        fmax, classes_num, freeze_base=True, interpolate_mode='nearest'):
         self.interpolate_ratio = 32     # Downsampled ratio
         """Classifier for a new task using pretrained Cnn14 as a sub module.
         """
@@ -328,23 +331,20 @@ class Transfer_Cnn14_detect(nn.Module):
         self.base = Cnn14_DecisionLevelMax(sample_rate, window_size, hop_size, mel_bins, fmin, 
             fmax, audioset_classes_num, interpolate_mode)
 
+        # print(classes_num)
         # Transfer to another task layer
         self.fc_transfer = nn.Linear(2048, classes_num, bias=True)
 
-        # if freeze_base:
-        #     # Freeze AudioSet pretrained layers
-        #     for param in self.base.parameters():
-        #         param.requires_grad = False
+        if freeze_base:
+            # Freeze AudioSet pretrained layers
+            print("masuk")
+            for param in self.base.parameters():
+                param.requires_grad = False
 
         self.interpolator = Interpolator(
             ratio=self.interpolate_ratio, 
             interpolate_mode=interpolate_mode
         )
-        
-        if freeze_base:
-            # Freeze AudioSet pretrained layers
-            for param in self.base.parameters():
-                param.requires_grad = False
         self.init_weights()
 
     def init_weights(self):
@@ -360,7 +360,13 @@ class Transfer_Cnn14_detect(nn.Module):
         output_dict = self.base(input, mixup_lambda)
         framewise_output = output_dict['framewise_output']
 
-        clipwise_output =  torch.log_softmax(self.fc_transfer(framewise_output), dim=-1)
+        # Apply fc_transfer to framewise_output to get output for 2 classes
+        framewise_output = self.fc_transfer(framewise_output)  # (batch_size, time_steps, 2)
+
+        clipwise_output, _ = torch.max(framewise_output, dim=1)
+        clipwise_output = torch.log_softmax(clipwise_output, dim=-1)
+        
+        output_dict['framewise_output'] = framewise_output
         output_dict['clipwise_output'] = clipwise_output
         
         return output_dict

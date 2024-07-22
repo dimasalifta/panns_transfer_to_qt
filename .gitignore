@@ -5,3 +5,5 @@
 *.pyc
 __pycache__
 runme.sh
+*.pth
+*.h5
