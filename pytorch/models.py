@@ -336,9 +336,9 @@ class Transfer_Cnn14_detect(nn.Module):
         """Input: (batch_size, data_length)
         """
         output_dict = self.base(input, mixup_lambda)
-        embedding = output_dict['embedding']
+        framewise_output = output_dict['framewise_output']
 
-        clipwise_output =  torch.log_softmax(self.fc_transfer(embedding), dim=-1)
+        clipwise_output =  torch.log_softmax(self.fc_transfer(framewise_output), dim=-1)
         output_dict['clipwise_output'] = clipwise_output
  
         return output_dict
