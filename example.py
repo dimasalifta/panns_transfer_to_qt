@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
     print('------ Sound event detection ------')
     sed = SoundEventDetection(
-        checkpoint_path=None, 
+        checkpoint_path=ckpt_detect_path, 
         device=device, 
         interpolate_mode='nearest', # 'nearest'
     )
