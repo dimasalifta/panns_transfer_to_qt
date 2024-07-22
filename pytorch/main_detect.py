@@ -243,7 +243,7 @@ if __name__ == '__main__':
     parser_train.add_argument('--stop_iteration', type=int, required=True)
     parser_train.add_argument('--cuda', action='store_true', default=False)
     parser_train.add_argument('--workers', type=int, required=True)
-    parser_train.add_argument('--interpolate_mode', type=int, required=True)
+    parser_train.add_argument('--interpolate_mode', type=str, required=True)
     # Parse arguments
     args = parser.parse_args()
     args.filename = get_filename(__file__)
