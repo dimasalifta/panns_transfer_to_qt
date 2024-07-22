@@ -5,7 +5,7 @@ import librosa
 import panns_inference
 from panns_inference import AudioTagging, SoundEventDetection, labels
 
-ckpt_path = "checkpoints/main/2000_iterations.pth"
+ckpt_path = "panns_transfer_to_qt/checkpoints/main/2000_iterations.pth"
 
 def print_audio_tagging_result(clipwise_output):
     """Visualization of audio tagging result.
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     """Example of using panns_inferece for audio tagging and sound evetn detection.
     """
     device = 'cuda' # 'cuda' | 'cpu'
-    audio_path = 'datasets/cat_dog/cat/cat.0.wav'
+    audio_path = 'panns_transfer_to_qt/datasets/cat_dog/cat/cat.0.wav'
     (audio, _) = librosa.core.load(audio_path, sr=32000, mono=True)
     audio = audio[None, :]  # (batch_size, segment_samples)
 
