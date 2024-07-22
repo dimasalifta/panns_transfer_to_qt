@@ -40,6 +40,7 @@ def train(args):
     device = 'cuda' if (args.cuda and torch.cuda.is_available()) else 'cpu'
     filename = args.filename
     num_workers = args.workers
+    interpolate_mode = args.interpolate_mode
 
     loss_func = get_loss_func(loss_type)
     pretrain = True if pretrained_checkpoint_path else False
@@ -242,7 +243,7 @@ if __name__ == '__main__':
     parser_train.add_argument('--stop_iteration', type=int, required=True)
     parser_train.add_argument('--cuda', action='store_true', default=False)
     parser_train.add_argument('--workers', type=int, required=True)
-
+    parser_train.add_argument('--interpolate_mode', type=int, required=True)
     # Parse arguments
     args = parser.parse_args()
     args.filename = get_filename(__file__)
