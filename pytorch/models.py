@@ -304,7 +304,7 @@ class Cnn14_DecisionLevelMax(nn.Module):
     
 class Transfer_Cnn14_detect(nn.Module):
     def __init__(self, sample_rate, window_size, hop_size, mel_bins, fmin, 
-        fmax, classes_num, interpolate_mode='nearest'):
+        fmax, classes_num, freeze_base ,interpolate_mode='nearest'):
         """Classifier for a new task using pretrained Cnn14 as a sub module.
         """
         super(Transfer_Cnn14_detect, self).__init__()
@@ -316,10 +316,10 @@ class Transfer_Cnn14_detect(nn.Module):
         # Transfer to another task layer
         self.fc_transfer = nn.Linear(2048, classes_num, bias=True)
 
-        # if freeze_base:
-        #     # Freeze AudioSet pretrained layers
-        #     for param in self.base.parameters():
-        #         param.requires_grad = False
+        if freeze_base:
+            # Freeze AudioSet pretrained layers
+            for param in self.base.parameters():
+                param.requires_grad = False
 
         self.interpolator = Interpolator(
             ratio=self.interpolate_ratio, 

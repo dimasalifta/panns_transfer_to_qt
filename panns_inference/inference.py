@@ -115,7 +115,7 @@ class SoundEventDetection(object):
             
             self.model = Transfer_Cnn14_detect(sample_rate=32000, window_size=1024, 
                 hop_size=320, mel_bins=64, fmin=50, fmax=14000, 
-                classes_num=self.classes_num, interpolate_mode=interpolate_mode)
+                classes_num=self.classes_num, freeze_base=False, interpolate_mode=interpolate_mode)
         else:
             self.model = model
         
