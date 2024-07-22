@@ -6,6 +6,7 @@ import panns_inference
 from panns_inference import AudioTagging, SoundEventDetection, labels
 
 ckpt_path = "/content/gdrive/MyDrive/2000_iter.pth"
+ckpt_detect_path = "/content/gdrive/MyDrive/2000_iter_detect.pth"
 def print_audio_tagging_result(clipwise_output):
     """Visualization of audio tagging result.
 
@@ -63,13 +64,13 @@ if __name__ == '__main__':
 
     print_audio_tagging_result(clipwise_output[0])
 
-    # print('------ Sound event detection ------')
-    # sed = SoundEventDetection(
-    #     checkpoint_path=None, 
-    #     device=device, 
-    #     interpolate_mode='nearest', # 'nearest'
-    # )
-    # framewise_output = sed.inference(audio)
-    # """(batch_size, time_steps, classes_num)"""
+    print('------ Sound event detection ------')
+    sed = SoundEventDetection(
+        checkpoint_path=None, 
+        device=device, 
+        interpolate_mode='nearest', # 'nearest'
+    )
+    framewise_output = sed.inference(audio)
+    """(batch_size, time_steps, classes_num)"""
 
-    # plot_sound_event_detection_result(framewise_output[0])
+    plot_sound_event_detection_result(framewise_output[0])
