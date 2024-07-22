@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import torch
 from pathlib import Path
 
-from .pytorch_utils import move_data_to_device
+from .pytorch_utils import move_data_to_device, Interpolator
 from .models import Cnn14, Cnn14_DecisionLevelMax, Transfer_Cnn14, Transfer_Cnn14_detect
 from .config import labels, classes_num
 
