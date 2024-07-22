@@ -18,7 +18,7 @@ from losses import get_loss_func
 from pytorch_utils import move_data_to_device, do_mixup
 from utilities import (create_folder, get_filename, create_logging, StatisticsContainer, Mixup)
 from data_generator import GtzanDataset, TrainSampler, EvaluateSampler, collate_fn
-from models import Transfer_Cnn14
+from models import Transfer_Cnn14, Transfer_Cnn14_Detect
 from evaluate import Evaluator
 
 
