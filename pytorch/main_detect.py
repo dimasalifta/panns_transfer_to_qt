@@ -78,7 +78,7 @@ def train(args):
     # Model
     Model = eval(model_type)
     model = Model(sample_rate, window_size, hop_size, mel_bins, fmin, fmax, 
-        classes_num, freeze_base)
+        classes_num, interpolate_mode)
 
     # Statistics
     statistics_container = StatisticsContainer(statistics_path)
