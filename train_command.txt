@@ -1,5 +1,5 @@
 python pytorch/main.py train ^
---dataset_dir=C:\Users\dimas\Documents\GitHub\panns_transfer_to_qt\datasets ^
+--dataset_dir=C:\Users\dimas\Documents\GitHub\panns_transfer_to_qt\datasets\harakat_raw\train ^
 --workspace=C:\Users\dimas\Documents\GitHub\panns_transfer_to_qt ^
 --holdout_fold=1 ^
 --model_type="Transfer_Cnn14" ^

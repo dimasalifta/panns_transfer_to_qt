@@ -7,3 +7,4 @@ __pycache__
 runme.sh
 *.pth
 *.h5
+datasets/*

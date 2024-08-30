@@ -14,9 +14,9 @@ ref = 1.0
 amin = 1e-10
 top_db = None
 
-# labels = ['mad thabii', 'mad lazim mutsaqal kilmi', 'mad arid lissukun']
+labels = ['Madd Arid Lissukun', 'Madd Lazim Mutsaqal Kilmi', 'Madd Thabii']
 
-labels = ['cat','dog']
+# labels = ['cat','dog']
     
 lb_to_idx = {lb: idx for idx, lb in enumerate(labels)}
 idx_to_lb = {idx: lb for idx, lb in enumerate(labels)}
