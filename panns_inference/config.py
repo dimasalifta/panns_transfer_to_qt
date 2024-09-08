@@ -25,7 +25,7 @@ ids = []    # Each label has a unique id such as "/m/068hy"
 #     ids.append(id)
 #     labels.append(label)
 
-labels = ["cat","dog"]
+labels = ['Madd Arid Lissukun', 'Madd Lazim Mutsaqal Kilmi', 'Madd Thabii']
 # print(labels)
 
 classes_num = len(labels)
